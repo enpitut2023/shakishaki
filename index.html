@@ -1,11 +1,32 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>シャキシャキ</title>
+        <title>ベジ食べる/title>
         <meta charset="utf-8">
+        <link rel="stylesheet" href="main.css">
     </head>
     <body>
-        <h1>シャキシャキ</h1>
-        <p>Hello, world!</p>
+        <h1>ベジ食べる</h1>
+        <div id="app">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="id">品目</th>
+                        <th class="state">状態</th>
+                        <th class="date">登録日</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="item in veges" v-bind:key="item.id">
+                        <th>{{ item.id }}</th>
+                        <td>{{ item.state }}</td>
+                        <td>{{ item.date }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+        <script src="main.js"></script>
     </body>
+ 
 </html>
