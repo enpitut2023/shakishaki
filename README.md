@@ -22,4 +22,4 @@ miroのURL
 https://miro.com/app/board/uXjVM4W_z_o=/
 
 アプリのURL
-aaa
+https://enpitut2023.github.io/shakishaki/
