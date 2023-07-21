@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Vue.js App</title>
+  <title>完璧で究極のシャキシャキ</title>
   <link rel="stylesheet" href="./main.css">
   <link href="https://fonts.googleapis.com/earlyaccess/hannari.css" rel="stylesheet">
 </head>
@@ -28,6 +28,8 @@
         <tr>
           <th class="id">ID</th>
           <th class="comment">品目</th>
+          <th class="date">登録日</th>
+          <th class="deadline">賞味期限</th>
           <th class="state">状態</th>
           <th class="button">-</th>
         </tr>
@@ -40,6 +42,8 @@
           v-bind:class="{done:item.state}">
           <th>{{ item.id }}</th>
           <td>{{ item.comment }}</td>
+          <td>{{ item.date }} </td>
+          <td>{{ item.deadline }} </td>
           <td class="state">
             <!-- ★STEP10 状態変更ボタン -->
             <button v-on:click="doChangeState(item)">
@@ -60,7 +64,7 @@
     <h2>新しい品目の追加</h2>
     <form class="add-form" v-on:submit.prevent="doAdd">
       <!-- コメント入力フォーム -->
-      コメント <input type="text" ref="comment">
+      食品名 <input type="text" ref="comment">
       <!-- 追加ボタンのモック -->
       <button type="submit">追加</button>
     </form>
