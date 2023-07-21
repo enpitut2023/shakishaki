@@ -29,8 +29,8 @@ new Vue({
     // ★STEP11＆STEP13 各状態のラベル
     options: [
       { value: -1, label: 'すべて' },
-      { value: 0, label: '作業中' },
-      { value: 1, label: '完了' }
+      { value: 0, label: '新鮮' },
+      { value: 1, label: '腐敗' }
     ]
   },
 
@@ -43,13 +43,13 @@ new Vue({
       }, this)
     },
 
-    // ★STEP13 作業中・完了のラベルを表示する
+    // ★STEP13 新鮮・腐敗のラベルを表示する
     labels() {
       return this.options.reduce(function (a, b) {
         return Object.assign(a, { [b.value]: b.label })
       }, {})
       // キーから見つけやすいように、次のように加工したデータを作成
-      // {0: '作業中', 1: '完了', -1: 'すべて'}
+      // {0: '新鮮', 1: '腐敗', -1: 'すべて'}
     }
   },
 
@@ -84,7 +84,7 @@ new Vue({
       }
       // { 新しいID, コメント, 作業状態 }
       // というオブジェクトを現在の todos リストへ push
-      // 作業状態「state」はデフォルト「作業中=0」で作成
+      // 作業状態「state」はデフォルト「新鮮=0」で作成
       this.todos.push({
         id: todoStorage.uid++,
         comment: comment.value,

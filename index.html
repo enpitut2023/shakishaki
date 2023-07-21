@@ -11,6 +11,7 @@
   <div id="app">
     <h1 class="title">ベジ食べる</h1>
 
+
     <!-- ★STEP11 -->
     <label v-for="label in options" >
       <input type="radio"
@@ -26,7 +27,7 @@
       <thead v-pre>
         <tr>
           <th class="id">ID</th>
-          <th class="comment">コメント</th>
+          <th class="comment">品目</th>
           <th class="state">状態</th>
           <th class="button">-</th>
         </tr>
@@ -54,10 +55,9 @@
         </tr>
       </tbody>
     </table>
-    <p>※削除ボタンはコントロールキーを押しながらクリックして下さい</p>
 
     <!-- ★STEP6 -->
-    <h2>新しい作業の追加</h2>
+    <h2>新しい品目の追加</h2>
     <form class="add-form" v-on:submit.prevent="doAdd">
       <!-- コメント入力フォーム -->
       コメント <input type="text" ref="comment">
