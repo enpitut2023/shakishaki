@@ -24,6 +24,9 @@ thead th.id {
 thead th.state {
   width: 100px;
 }
+thead th.date{
+  width: 150px;
+}
 thead th.button {
   width: 60px;
 }

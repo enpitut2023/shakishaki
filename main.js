@@ -15,6 +15,18 @@ var todoStorage = {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(todos))
   }
 }
+var registerDate = {
+  getDate: function(){
+    var d = new Date();
+    var formatted = `
+  
+    ${d.getMonth()+1}/${d.getDate()} 
+    ${d.getHours()}:${d.getMinutes()}
+    
+    `.replace(/\n|\r/g, '');
+    return formatted
+  }
+}
 
 
 // ★STEP1
@@ -88,6 +100,7 @@ new Vue({
       this.todos.push({
         id: todoStorage.uid++,
         comment: comment.value,
+        date: registerDate.getDate(),
         state: 0
       })
       // フォーム要素を空にする
