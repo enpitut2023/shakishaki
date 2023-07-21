@@ -28,6 +28,29 @@ var registerDate = {
   }
 }
 
+var Deadline = {
+  getDate: function(){
+    var d = new Date();
+    var formatted = `
+      ${d.getMonth()+1}/${d.getDate()} 
+      ${d.getHours()}:${d.getMinutes()+1}
+
+
+      `.replace(/\n|\r/g, '');
+    return formatted
+  }
+}
+
+
+/*賞味期限のタイマー関数
+function test(){
+  setTimeout("shori()",3000);
+}
+
+function shori(){
+  alert('切れました。');
+}
+*/
 
 // ★STEP1
 new Vue({
@@ -101,6 +124,7 @@ new Vue({
         id: todoStorage.uid++,
         comment: comment.value,
         date: registerDate.getDate(),
+        deadline: Deadline.getDate(),
         state: 0
       })
       // フォーム要素を空にする

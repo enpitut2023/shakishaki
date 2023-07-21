@@ -38,6 +38,10 @@ thead th.state {
 thead th.date{
   width: 150px;
 }
+thread th.deadline{
+  width: 150px;
+}
+
 thead th.button {
   width: 60px;
 }
