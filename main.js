@@ -36,6 +36,8 @@ var Deadline = {
       ${d.getFullYear()}/
       ${d.getMonth()+1}/${d.getDate()} 
       ${d.getHours()}:${d.getMinutes()+1}
+
+      `.replace(/\n|\r/g, '');
 /*
     var lastd = new Date(d.getFullYear(), d.getMonth(), 0);
     if ((d.getDate()+date) > lastd.getDate()){
@@ -44,14 +46,14 @@ var Deadline = {
       ${d.getHours()}:${d.getMinutes()}
     `.replace(/\n|\r/g, '');
     } else {
-    */
+    
       var formatted = `
       ${d.getMonth()+1}/${d.getDate()} 
       ${d.getHours()}:${d.getMinutes()+date}
 
 
       `.replace(/\n|\r/g, '');
-    //}
+    } */
     return formatted
   }
 }
@@ -81,7 +83,7 @@ window.onload = function(){
 
 
 
-} 
+
 
 /*賞味期限のタイマー関数
 function test(){
