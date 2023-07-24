@@ -29,7 +29,7 @@
           <th class="id">ID</th>
           <th class="comment">品目</th>
           <th class="date">登録日</th>
-          <th class="deadline">賞味期限</th>
+          <th class="deadline">消費期限</th>
           <th class="state">状態</th>
           <th class="button">-</th>
         </tr>
@@ -67,6 +67,11 @@
       食品名 <input type="text" ref="comment">
       <!-- 追加ボタンのモック -->
       <button type="submit">追加</button>
+    </form>
+      <button type="submit" v-on:click="addItem('キャベツ')">キャベツ</button>
+      <button type="submit" v-on:click="addItem1('ピーマン')">ピーマン</button>
+      <button type="submit" v-on:click="addItem2('もやし')">もやし</button>
+      <button type="submit" v-on:click="addItem3('鶏肉')">鶏肉</button>
     </form>
   </div>
 
