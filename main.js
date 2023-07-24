@@ -32,8 +32,8 @@ var Deadline = {
   getDate: function(date){
     var d = new Date();
     var formatted = `
-      ${d.getMonth()+1}/${d.getDate()} 
-      ${d.getHours()}:${d.getMinutes()+date}
+      ${d.getMonth()+1}/${d.getDate()+date} 
+      ${d.getHours()}:${d.getMinutes()}
 
 
       `.replace(/\n|\r/g, '');
@@ -58,6 +58,7 @@ new Vue({
   data: {
     // ★STEP5 localStorage から 取得した ToDo のリスト
     todos: [],
+    buttons: [],
     // ★STEP11 抽出しているToDoの状態
     current: -1,
     // ★STEP11＆STEP13 各状態のラベル
@@ -129,7 +130,7 @@ new Vue({
       // フォーム要素を空にする
       comment.value = ''
     },
-    addItem: function(itemname) {
+    addItem: function(itemname, i) {
       // ref で名前を付けておいた要素を参照
       //コメントの内容
       //var comment = this.$refs.comment
@@ -145,47 +146,28 @@ new Vue({
         comment: itemname,
         date: registerDate.getDate(),
         //ここで任意の消費期限の設定
-        deadline: Deadline.getDate(1),
+        deadline: Deadline.getDate(i),
         state: 0
       })
       // フォーム要素を空にする
       comment.value = ''
     },
-    addItem1: function(itemname) {
-      this.todos.push({
-        id: todoStorage.uid++,
-        comment: itemname,
-        date: registerDate.getDate(),
-        //ここで任意の消費期限の設定
-        deadline: Deadline.getDate(2),
-        state: 0
+    
+    addButton: function() {
+      var buttonName = this.$refs.buttonName
+      var buttonDate = this.$refs.buttonDate
+      if (!buttonName.value.length) {
+        return
+      }
+      if (!buttonDate.value.length) {
+        return
+      }
+      this.buttons.push({
+        name: buttonName.value,
+        date: Number(buttonDate.value),
       })
-      // フォーム要素を空にする
-      comment.value = ''
-    },
-    addItem2: function(itemname) {
-      this.todos.push({
-        id: todoStorage.uid++,
-        comment: itemname,
-        date: registerDate.getDate(),
-        //ここで任意の消費期限の設定
-        deadline: Deadline.getDate(3),
-        state: 0
-      })
-      // フォーム要素を空にする
-      comment.value = ''
-    },
-    addItem3: function(itemname) {
-      this.todos.push({
-        id: todoStorage.uid++,
-        comment: itemname,
-        date: registerDate.getDate(),
-        //ここで消費期限の設定
-        deadline: Deadline.getDate(4),
-        state: 0
-      })
-      // フォーム要素を空にする
-      comment.value = ''
+      buttonName.value = ''
+      buttonDate.value = ''
     },
 
     // ★STEP10 状態変更の処理

@@ -62,17 +62,17 @@
 
     <!-- ★STEP6 -->
     <h2>新しい品目の追加</h2>
-    <form class="add-form" v-on:submit.prevent="doAdd">
-      <!-- コメント入力フォーム -->
-      食品名 <input type="text" ref="comment">
-      <!-- 追加ボタンのモック -->
-      <button type="submit">追加</button>
+    <form v-on:submit.prevent="addButton">
+      ボタン名 <input type="text" ref="buttonName">
+      消費期限日数 <input type="number" ref="buttonDate">
+      <button type="submit">ボタン追加</button>
     </form>
-      <button type="submit" v-on:click="addItem('キャベツ')">キャベツ</button>
-      <button type="submit" v-on:click="addItem1('ピーマン')">ピーマン</button>
-      <button type="submit" v-on:click="addItem2('もやし')">もやし</button>
-      <button type="submit" v-on:click="addItem3('鶏肉')">鶏肉</button>
-    </form>
+    <button type="button" v-for="button in buttons" v-on:click="addItem(button.name, button.date)">{{ button.name }}</button>
+      <button type="submit" v-on:click="addItem('キャベツ', 3)">キャベツ</button>
+      <button type="submit" v-on:click="addItem('ピーマン',2)">ピーマン</button>
+      <button type="submit" v-on:click="addItem('もやし', 3)">もやし</button>
+      <button type="submit" v-on:click="addItem('鶏肉', 2)">鶏肉</button>
+  
   </div>
 
   <script src="https://unpkg.com/vue@2"></script>
