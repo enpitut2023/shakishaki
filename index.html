@@ -44,9 +44,11 @@
           <td>{{ item.comment }}</td>
           <td>{{ item.date }} </td>
           <td>{{ item.deadline }} </td>
+          <!-- <script type="application/javascript">doPrint(item)</script> -->
+
           <td class="state">
             <!-- ★STEP10 状態変更ボタン -->
-            <button v-on:click="doChangeState(item)">
+            <button id="box" v-on:click="doChangeState(item)">
               {{ labels[item.state] }}
             </button>
           </td>
@@ -62,6 +64,7 @@
 
     <!-- ★STEP6 -->
     <h2>新しい品目の追加</h2>
+
     <form v-on:submit.prevent="addButton">
       食材名 <input type="text" ref="buttonName">
       消費期限日数 <select ref="buttonDate" >
@@ -76,6 +79,7 @@
         <option value="9">9</option>
       </select>
       <button type="submit" class="btn btn--blue">ボタン追加</button>
+      main
     </form>
     <button type="button" v-for="button in buttons" v-on:click="addItem(button.name, button.date)" class="addbutton">{{ button.name }}</button>
       <button type="submit" v-on:click="addItem('キャベツ', 3)">キャベツ</button>
