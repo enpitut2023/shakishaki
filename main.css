@@ -80,6 +80,7 @@ button {
   color: #fff;
   cursor: pointer;
 }
+
 tbody tr.done #box{
   background: #FF8C00;
 }

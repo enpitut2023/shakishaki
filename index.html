@@ -29,7 +29,7 @@
           <th class="id">ID</th>
           <th class="comment">品目</th>
           <th class="date">登録日</th>
-          <th class="deadline">賞味期限</th>
+          <th class="deadline">消費期限</th>
           <th class="state">状態</th>
           <th class="button">-</th>
         </tr>
@@ -64,12 +64,29 @@
 
     <!-- ★STEP6 -->
     <h2>新しい品目の追加</h2>
-    <form class="add-form" v-on:submit.prevent="doAdd">
-      <!-- コメント入力フォーム -->
-      食品名 <input type="text" ref="comment">
-      <!-- 追加ボタンのモック -->
-      <button type="submit" >追加</button>
+
+    <form v-on:submit.prevent="addButton">
+      食材名 <input type="text" ref="buttonName">
+      消費期限日数 <select ref="buttonDate" >
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+      </select>
+      <button type="submit" class="btn btn--blue">ボタン追加</button>
+      main
     </form>
+    <button type="button" v-for="button in buttons" v-on:click="addItem(button.name, button.date)" class="addbutton">{{ button.name }}</button>
+      <button type="submit" v-on:click="addItem('キャベツ', 3)">キャベツ</button>
+      <button type="submit" v-on:click="addItem('ピーマン',2)">ピーマン</button>
+      <button type="submit" v-on:click="addItem('もやし', 3)">もやし</button>
+      <button type="submit" v-on:click="addItem('鶏肉', 2)">鶏肉</button>
+  
   </div>
 
   <script src="https://unpkg.com/vue@2"></script>

@@ -29,13 +29,29 @@ var registerDate = {
 }
 
 var Deadline = {
-  getDate: function(){
+  getDate: function(date){
     var d = new Date();
+
     var formatted = `
       ${d.getFullYear()}/
       ${d.getMonth()+1}/${d.getDate()} 
       ${d.getHours()}:${d.getMinutes()+1}
+/*
+    var lastd = new Date(d.getFullYear(), d.getMonth(), 0);
+    if ((d.getDate()+date) > lastd.getDate()){
+      var formatted = `
+      ${d.getMonth()+2}/${(d.getDate()+date) - lastd.getDate()} 
+      ${d.getHours()}:${d.getMinutes()}
+    `.replace(/\n|\r/g, '');
+    } else {
+    */
+      var formatted = `
+      ${d.getMonth()+1}/${d.getDate()} 
+      ${d.getHours()}:${d.getMinutes()+date}
+
+
       `.replace(/\n|\r/g, '');
+    //}
     return formatted
   }
 }
@@ -60,6 +76,13 @@ window.onload = function(){
 }
 
 
+
+
+
+
+
+} 
+
 /*賞味期限のタイマー関数
 function test(){
   setTimeout("shori()",3000);
@@ -77,6 +100,7 @@ let vm = new Vue({
   data: {
     // ★STEP5 localStorage から 取得した ToDo のリスト
     todos: [],
+    buttons: [],
     // ★STEP11 抽出しているToDoの状態
     current: -1,
     // ★STEP11＆STEP13 各状態のラベル
@@ -126,29 +150,41 @@ let vm = new Vue({
   },
 
   methods: {
-
-    // ★STEP7 ToDo 追加の処理
-    doAdd: function(event, value) {
-      // ref で名前を付けておいた要素を参照
-      var comment = this.$refs.comment
-      // 入力がなければ何もしないで return
-      if (!comment.value.length) {
-        return
-      }
+    addItem: function(itemname, i) {
       // { 新しいID, コメント, 作業状態 }
       // というオブジェクトを現在の todos リストへ push
       // 作業状態「state」はデフォルト「新鮮=0」で作成
       this.todos.push({
         id: todoStorage.uid++,
-        comment: comment.value,
+        comment: itemname,
         date: registerDate.getDate(),
-        deadline: Deadline.getDate(),
+        //ここで任意の消費期限の設定
+        deadline: Deadline.getDate(i),
         state: 0
       })
+/*
       console.log(this.todos)
       // フォーム要素を空にする
       comment.value = ''
+      */
       autoChange();
+    },
+    
+    addButton: function() {
+      var buttonName = this.$refs.buttonName
+      var buttonDate = this.$refs.buttonDate
+      if (!buttonName.value.length) {
+        return
+      }
+      if (!buttonDate.value.length) {
+        return
+      }
+      this.buttons.push({
+        name: buttonName.value,
+        date: Number(buttonDate.value),
+      })
+      buttonName.value = ''
+      buttonDate.value = ''
     },
 
     // ★STEP10 状態変更の処理
