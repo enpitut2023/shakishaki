@@ -79,7 +79,6 @@
         <option value="9">9</option>
       </select>
       <button type="submit" class="btn btn--blue">ボタン追加</button>
-      main
     </form>
     <button type="button" v-for="button in buttons" v-on:click="addItem(button.name, button.date)" class="addbutton">{{ button.name }}</button>
       <button type="submit" v-on:click="addItem('キャベツ', 3)">キャベツ</button>
