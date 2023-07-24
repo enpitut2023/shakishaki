@@ -44,9 +44,11 @@
           <td>{{ item.comment }}</td>
           <td>{{ item.date }} </td>
           <td>{{ item.deadline }} </td>
+          <!-- <script type="application/javascript">doPrint(item)</script> -->
+
           <td class="state">
             <!-- ★STEP10 状態変更ボタン -->
-            <button v-on:click="doChangeState(item)">
+            <button id="box" v-on:click="doChangeState(item)">
               {{ labels[item.state] }}
             </button>
           </td>
@@ -66,7 +68,7 @@
       <!-- コメント入力フォーム -->
       食品名 <input type="text" ref="comment">
       <!-- 追加ボタンのモック -->
-      <button type="submit">追加</button>
+      <button type="submit" >追加</button>
     </form>
   </div>
 

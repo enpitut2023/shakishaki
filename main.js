@@ -19,7 +19,7 @@ var registerDate = {
   getDate: function(){
     var d = new Date();
     var formatted = `
-  
+    ${d.getFullYear()}/
     ${d.getMonth()+1}/${d.getDate()} 
     ${d.getHours()}:${d.getMinutes()}
     
@@ -32,13 +32,31 @@ var Deadline = {
   getDate: function(){
     var d = new Date();
     var formatted = `
+      ${d.getFullYear()}/
       ${d.getMonth()+1}/${d.getDate()} 
       ${d.getHours()}:${d.getMinutes()+1}
-
-
       `.replace(/\n|\r/g, '');
     return formatted
   }
+}
+
+function comTime(deadline){
+  var d = new Date();
+  var dead = new Date(deadline)
+  console.log(dead);
+  console.log(d);
+  console.log(dead <= d);
+  return dead <= d
+}
+
+function autoChange() {
+  for (var i in vm._data.todos){
+    console.log(vm._data.todos[i]);
+    vm.doTimer(vm._data.todos[i])
+  }
+}
+window.onload = function(){
+  autoChange();
 }
 
 
@@ -53,7 +71,7 @@ function shori(){
 */
 
 // ★STEP1
-new Vue({
+let vm = new Vue({
   el: '#app',
 
   data: {
@@ -127,20 +145,36 @@ new Vue({
         deadline: Deadline.getDate(),
         state: 0
       })
+      console.log(this.todos)
       // フォーム要素を空にする
       comment.value = ''
+      autoChange();
     },
 
     // ★STEP10 状態変更の処理
     doChangeState: function (item) {
-      item.state = !item.state ? 1 : 0
+      if (item.state==0){
+        item.state = 1;
+      }
     },
 
     // ★STEP10 削除の処理
     doRemove: function (item) {
       var index = this.todos.indexOf(item)
       this.todos.splice(index, 1)
-    }
+    },
 
-  }
-})
+   
+    doTimer: function (item) {
+        const intervalTime = setInterval(() =>{   
+          if(comTime(item.deadline)){
+              this.doChangeState(item);
+              clearInterval(intervalTime);
+          }
+        },1000);
+    },
+    // doPrint: function(item) {
+    //   console.log(item.deadline);
+    //   this.doTimer(item);
+    // }
+    }    })
