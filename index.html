@@ -75,9 +75,9 @@
         <option value="8">8</option>
         <option value="9">9</option>
       </select>
-      <button type="submit">ボタン追加</button>
+      <button type="submit" class="btn btn--blue">ボタン追加</button>
     </form>
-    <button type="button" v-for="button in buttons" v-on:click="addItem(button.name, button.date)">{{ button.name }}</button>
+    <button type="button" v-for="button in buttons" v-on:click="addItem(button.name, button.date)" class="addbutton">{{ button.name }}</button>
       <button type="submit" v-on:click="addItem('キャベツ', 3)">キャベツ</button>
       <button type="submit" v-on:click="addItem('ピーマン',2)">ピーマン</button>
       <button type="submit" v-on:click="addItem('もやし', 3)">もやし</button>
