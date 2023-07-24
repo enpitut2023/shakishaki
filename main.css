@@ -84,3 +84,13 @@ button {
 tbody tr.done #box{
   background: #FF8C00;
 }
+
+.addbutton{
+  border: none;
+  border-radius: 20px;
+  line-height: 24px;
+  padding: 0 8px;
+  background: #e400ab;
+  color: #fff;
+  cursor: pointer;
+}

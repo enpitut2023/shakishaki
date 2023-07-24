@@ -2,6 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>完璧で究極のシャキシャキ</title>
   <link rel="stylesheet" href="./main.css">
   <link href="https://fonts.googleapis.com/earlyaccess/hannari.css" rel="stylesheet">
@@ -80,7 +81,7 @@
       </select>
       <button type="submit" class="btn btn--blue">ボタン追加</button>
     </form>
-    <button type="button" v-for="button in buttons" v-on:click="addItem(button.name, button.date)" class="addbutton">{{ button.name }}</button>
+    <button type="button" v-for="button in buttons" v-on:click="addItem(button.name, button.date)" class="addbutton" class="addbutton">{{ button.name }}</button>
       <button type="submit" v-on:click="addItem('キャベツ', 3)">キャベツ</button>
       <button type="submit" v-on:click="addItem('ピーマン',2)">ピーマン</button>
       <button type="submit" v-on:click="addItem('もやし', 3)">もやし</button>
