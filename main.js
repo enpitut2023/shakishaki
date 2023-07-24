@@ -29,18 +29,17 @@ var registerDate = {
 }
 
 var Deadline = {
-  getDate: function(){
+  getDate: function(date){
     var d = new Date();
     var formatted = `
       ${d.getMonth()+1}/${d.getDate()} 
-      ${d.getHours()}:${d.getMinutes()+1}
+      ${d.getHours()}:${d.getMinutes()+date}
 
 
       `.replace(/\n|\r/g, '');
     return formatted
   }
-}
-
+} 
 
 /*賞味期限のタイマー関数
 function test(){
@@ -108,10 +107,10 @@ new Vue({
   },
 
   methods: {
-
     // ★STEP7 ToDo 追加の処理
     doAdd: function(event, value) {
       // ref で名前を付けておいた要素を参照
+      //コメントの内容
       var comment = this.$refs.comment
       // 入力がなければ何もしないで return
       if (!comment.value.length) {
@@ -124,7 +123,65 @@ new Vue({
         id: todoStorage.uid++,
         comment: comment.value,
         date: registerDate.getDate(),
-        deadline: Deadline.getDate(),
+        deadline: Deadline.getDate(1),
+        state: 0
+      })
+      // フォーム要素を空にする
+      comment.value = ''
+    },
+    addItem: function(itemname) {
+      // ref で名前を付けておいた要素を参照
+      //コメントの内容
+      //var comment = this.$refs.comment
+      // 入力がなければ何もしないで return
+      /*if (!comment.value.length) {
+        return
+      }*/
+      // { 新しいID, コメント, 作業状態 }
+      // というオブジェクトを現在の todos リストへ push
+      // 作業状態「state」はデフォルト「新鮮=0」で作成
+      this.todos.push({
+        id: todoStorage.uid++,
+        comment: itemname,
+        date: registerDate.getDate(),
+        //ここで任意の消費期限の設定
+        deadline: Deadline.getDate(1),
+        state: 0
+      })
+      // フォーム要素を空にする
+      comment.value = ''
+    },
+    addItem1: function(itemname) {
+      this.todos.push({
+        id: todoStorage.uid++,
+        comment: itemname,
+        date: registerDate.getDate(),
+        //ここで任意の消費期限の設定
+        deadline: Deadline.getDate(2),
+        state: 0
+      })
+      // フォーム要素を空にする
+      comment.value = ''
+    },
+    addItem2: function(itemname) {
+      this.todos.push({
+        id: todoStorage.uid++,
+        comment: itemname,
+        date: registerDate.getDate(),
+        //ここで任意の消費期限の設定
+        deadline: Deadline.getDate(3),
+        state: 0
+      })
+      // フォーム要素を空にする
+      comment.value = ''
+    },
+    addItem3: function(itemname) {
+      this.todos.push({
+        id: todoStorage.uid++,
+        comment: itemname,
+        date: registerDate.getDate(),
+        //ここで消費期限の設定
+        deadline: Deadline.getDate(4),
         state: 0
       })
       // フォーム要素を空にする

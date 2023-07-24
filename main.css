@@ -71,3 +71,10 @@ button {
   color: #fff;
   cursor: pointer;
 }
+.fresh {
+  background-color: green;
+}
+
+.expired {
+  background-color: red;
+}
