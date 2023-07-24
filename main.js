@@ -31,12 +31,22 @@ var registerDate = {
 var Deadline = {
   getDate: function(date){
     var d = new Date();
-    var formatted = `
+    var lastd = new Date(d.getFullYear(), d.getMonth(), 0);
+    if ((d.getDate()+date) > lastd.getDate()){
+      var formatted = `
+      ${d.getMonth()+2}/${(d.getDate()+date) - lastd.getDate()} 
+      ${d.getHours()}:${d.getMinutes()}
+
+
+      `.replace(/\n|\r/g, '');
+    } else {
+      var formatted = `
       ${d.getMonth()+1}/${d.getDate()+date} 
       ${d.getHours()}:${d.getMinutes()}
 
 
       `.replace(/\n|\r/g, '');
+    }
     return formatted
   }
 } 
@@ -108,36 +118,7 @@ new Vue({
   },
 
   methods: {
-    // ★STEP7 ToDo 追加の処理
-    doAdd: function(event, value) {
-      // ref で名前を付けておいた要素を参照
-      //コメントの内容
-      var comment = this.$refs.comment
-      // 入力がなければ何もしないで return
-      if (!comment.value.length) {
-        return
-      }
-      // { 新しいID, コメント, 作業状態 }
-      // というオブジェクトを現在の todos リストへ push
-      // 作業状態「state」はデフォルト「新鮮=0」で作成
-      this.todos.push({
-        id: todoStorage.uid++,
-        comment: comment.value,
-        date: registerDate.getDate(),
-        deadline: Deadline.getDate(1),
-        state: 0
-      })
-      // フォーム要素を空にする
-      comment.value = ''
-    },
     addItem: function(itemname, i) {
-      // ref で名前を付けておいた要素を参照
-      //コメントの内容
-      //var comment = this.$refs.comment
-      // 入力がなければ何もしないで return
-      /*if (!comment.value.length) {
-        return
-      }*/
       // { 新しいID, コメント, 作業状態 }
       // というオブジェクトを現在の todos リストへ push
       // 作業状態「state」はデフォルト「新鮮=0」で作成
@@ -149,8 +130,6 @@ new Vue({
         deadline: Deadline.getDate(i),
         state: 0
       })
-      // フォーム要素を空にする
-      comment.value = ''
     },
     
     addButton: function() {
