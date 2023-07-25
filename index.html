@@ -13,6 +13,7 @@
   <div id="app">
     <h1 class="fuwafuwa">
       <img src="C:\Users\Nao Shibata\OneDrive - 筑波大学\筑波大学\enpit\shakishaki-2\vege1.png" alt=""></h1>
+    <h1 class="title">ベジ食べる</h1>
     <a class="pagetop" href="#button"><div class="pagetop__arrow"></div></a>
     <a class="listtop" href="#list"><div class="listtop__arrow"></div></a>
       
@@ -44,18 +45,19 @@
       </select>
       <button type="submit" class="btn btn--blue">ボタン追加</button>
     </form>
-
-    <button type="button" v-for="button in buttons" v-on:click="addItem(button.name, button.date)" class="addbutton" class="addbutton">{{ button.name }}</button>
-    <button type="submit" v-on:click="addItem('キャベツ', 14)">キャベツ</button>
-    <button type="submit" v-on:click="addItem('ピーマン',2)">ピーマン</button>
-    <button type="submit" v-on:click="addItem('もやし', 3)">もやし</button>
-    <button type="submit" v-on:click="addItem('鶏肉', 2)">鶏肉</button>
-    <button type="submit" v-on:click="addItem('きゅうり',4)">きゅうり</button>
-    <button type="submit" v-on:click="addItem('大根', 7)">大根</button>
-    <button type="submit" v-on:click="addItem('トマト', 7)">トマト</button>
-    <button type="submit" v-on:click="addItem('ブロッコリー', 3)">ブロッコリー</button>
-    <button type="submit" v-on:click="addItemDemo('デモ', 1)">デモ用ボタン</button>
-
+    
+    <div class="square_contents">
+    <div v-for="button in buttons"><button type="submit" v-on:click="addItem(button.name, button.date)" class="addbutton" >{{ button.name }}</button></div>
+    <div><button class="b" type="submit" v-on:click="addItem('キャベツ', 14)">キャベツ</button></div>
+    <div><button class="b" type="submit" v-on:click="addItem('ピーマン',2)">ピーマン</button></div>
+    <div><button class="b" type="submit" v-on:click="addItem('もやし', 3)">もやし</button></div>
+    <div><button class="b" type="submit" v-on:click="addItem('鶏肉', 2)">鶏肉</button></div>
+    <div><button class="b" type="submit" v-on:click="addItem('きゅうり',4)">きゅうり</button></div>
+    <div><button class="b" type="submit" v-on:click="addItem('大根', 7)">大根</button></div>
+    <div><button class="b" type="submit" v-on:click="addItem('トマト', 7)">トマト</button></div>
+    <div><button class="b" type="submit" v-on:click="addItem('ブロッコリー', 3)">ブロッコリー</button></div>
+    <div><button class="b" type="submit" v-on:click="addItemDemo('デモ', 1)">デモ用ボタン</button></div>
+    </div>
     <br>
     <a name="list"></a>
     <br>
@@ -71,7 +73,7 @@
     （{{ computedTodos.length }} 件を表示）
     <div class="tooltip">
       <i class="fas fa-question-circle tooltip-icon fa-lg fa-spin"></i>
-      <span class="tooltiptext">買った食材のボタンを追加していきましょう<span class="arrow"></span></span>
+      <span class="tooltiptext">買った食材の消費期限を確認しましょう<span class="arrow"></span></span>
     </div>
 
     <!-- ★STEP4 リスト用テーブル -->
@@ -102,7 +104,7 @@
 
           <td class="state">
             <!-- ★STEP10 状態変更ボタン -->
-            <button id="box" v-on:click="doChangeState(item)">
+            <button id="box">
               {{ labels[item.state] }}
             </button>
           </td>
