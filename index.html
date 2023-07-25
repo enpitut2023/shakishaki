@@ -12,7 +12,11 @@
 
   <div id="app">
     <h1 class="title">ベジ食べる</h1>
-
+    <a class="pagetop" href="#button"><div class="pagetop__arrow"></div></a>
+    <a class="listtop" href="#list"><div class="listtop__arrow"></div></a>
+      
+    <a name="button"></a>
+    <br>
     <h2>
       新しい品目の追加
       <div class="tooltip">
@@ -24,8 +28,7 @@
     
     
     
-  
-    <form v-on:submit.prevent="addButton">
+    <form v-on:submit.prevent="addButton" id="list_top">
       食材名 <input type="text" ref="buttonName">
       消費期限日数 <select ref="buttonDate" >
         <option value="1">1</option>
@@ -51,8 +54,11 @@
     <button type="submit" v-on:click="addItem('トマト', 7)">トマト</button>
     <button type="submit" v-on:click="addItem('ブロッコリー', 3)">ブロッコリー</button>
     <button type="submit" v-on:click="addItemDemo('デモ', 1)">デモ用ボタン</button>
+
     <br>
+    <a name="list"></a>
     <br>
+
     <!-- ★STEP11 -->
     <label v-for="label in options" >
       <input type="radio"
