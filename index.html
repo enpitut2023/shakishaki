@@ -70,7 +70,7 @@
     （{{ computedTodos.length }} 件を表示）
     <div class="tooltip">
       <i class="fas fa-question-circle tooltip-icon fa-lg fa-spin"></i>
-      <span class="tooltiptext">買った食材のボタンを追加していきましょう<span class="arrow"></span></span>
+      <span class="tooltiptext">買った食材の消費期限を確認しましょう<span class="arrow"></span></span>
     </div>
 
     <!-- ★STEP4 リスト用テーブル -->
@@ -101,7 +101,7 @@
 
           <td class="state">
             <!-- ★STEP10 状態変更ボタン -->
-            <button id="box" v-on:click="doChangeState(item)">
+            <button id="box">
               {{ labels[item.state] }}
             </button>
           </td>
