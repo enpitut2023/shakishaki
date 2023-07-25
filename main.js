@@ -28,6 +28,8 @@ var registerDate = {
   }
 }
 
+// 消費期限を設定
+// 現在時刻に保存期間を追加
 var Deadline = {
   getDate: function(date){
     var d = new Date();
@@ -61,6 +63,8 @@ var DeadlineDemo = {
     return formatted
   }
 }
+
+// 現在時刻と消費期限を比較
 function comTime(deadline){
   var d = new Date();
   var dead = new Date(deadline)
@@ -70,33 +74,18 @@ function comTime(deadline){
   return dead <= d
 }
 
+//自動状態変更のためにタイマーを起動
 function autoChange() {
   for (var i in vm._data.todos){
     console.log(vm._data.todos[i]);
     vm.doTimer(vm._data.todos[i])
   }
 }
+
+//リロードされてもタイマーを起動
 window.onload = function(){
   autoChange();
 }
-
-
-
-
-
-
-
-
-
-/*賞味期限のタイマー関数
-function test(){
-  setTimeout("shori()",3000);
-}
-
-function shori(){
-  alert('切れました。');
-}
-*/
 
 // ★STEP1
 let vm = new Vue({
@@ -174,6 +163,7 @@ let vm = new Vue({
       */
       autoChange();
     },
+    
     //デモ用addItem関数
     addItemDemo: function(itemname, i) {
       this.todos.push({
@@ -186,6 +176,9 @@ let vm = new Vue({
       })
       autoChange();
     },
+
+    
+    //　食材ボタンの追加
 
     addButton: function() {
       var buttonName = this.$refs.buttonName
@@ -217,12 +210,14 @@ let vm = new Vue({
       this.todos.splice(index, 1)
     },
 
-   
+    // 消費期限になったら通知
     doTimer: function (item) {
         const intervalTime = setInterval(() =>{   
           if(comTime(item.deadline)){
-              this.doChangeState(item);
-              clearInterval(intervalTime);
+            if(item.state == 0)  
+              alert(item.date + 'に追加した' + item.comment + 'が腐りました');
+            this.doChangeState(item); //　腐敗状態に切り替え
+            clearInterval(intervalTime);
           }
         },1000);
     },
