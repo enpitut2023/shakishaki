@@ -6,7 +6,9 @@
   font-family: "kawaii";
   src: url("APJapanesefontT.ttf") format("truetype");
 }
-
+body{
+  background-color: #FFEAB7;
+}
 h1.fuwafuwa {
   animation: fuwafuwa 3s infinite ease-in-out .8s alternate;
   background: url(../img/ico-apple.svg) no-repeat center center / 60px auto;
