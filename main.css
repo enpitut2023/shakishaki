@@ -136,6 +136,14 @@ span {
     transform: rotateZ(360deg);
   }
 } 
+content.front {
+  position: absolute;
+  z-index: 1000000;
+  top: 50px;
+  left:10px;
+  width:600px;
+  height:480px;
+}
 .fuwafuwa {
   animation: fuwafuwa 3s infinite ease-in-out .8s alternate;
   background: url(../img/ico-apple.svg) no-repeat center center / 60px auto;
