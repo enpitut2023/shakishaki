@@ -93,6 +93,54 @@ tbody tr.done #box{
   background: #e400ab;
   color: #fff;
   cursor: pointer;
+  font-weight: bold;
+  font-size: 25px;
+
+  padding: 10px;
+  color: #CCC;
+  -webkit-text-stroke:1px #000;
+  position: relative;
+  margin: 0;
+}
+
+.square_contents {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 600px;
+}
+
+.square_contents div {
+  position: relative;
+  max-width: 200px;
+  width: 20%; /*ボタンの大きさ*/
+  margin: 1%;
+}
+ 
+.square_contents div::before {
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+
+.square_contents button {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /*transform: translate(-50%,-50%);*/
+}
+
+.b{
+  font-weight: bold;
+  font-size: 25px;
+
+  padding: 10px;
+  color: #CCC;
+  -webkit-text-stroke:1px #000;
+  position: relative;
+  margin: 0;
 }
 
 .tooltip {
