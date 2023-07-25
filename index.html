@@ -30,7 +30,7 @@
       <button type="submit" class="btn btn--blue">ボタン追加</button>
     </form>
     <button type="button" v-for="button in buttons" v-on:click="addItem(button.name, button.date)" class="addbutton" class="addbutton">{{ button.name }}</button>
-    <button type="submit" v-on:click="addItem('キャベツ',   )">キャベツ</button>
+    <button type="submit" v-on:click="addItem('キャベツ', 14)">キャベツ</button>
     <button type="submit" v-on:click="addItem('ピーマン',2)">ピーマン</button>
     <button type="submit" v-on:click="addItem('もやし', 3)">もやし</button>
     <button type="submit" v-on:click="addItem('鶏肉', 2)">鶏肉</button>
@@ -54,9 +54,9 @@
     <table>
       <thead v-pre>
         <tr>
-          <th class="id">ID</th>
+          <!--<th class="id">ID</th>-->
           <th class="comment">品目</th>
-          <th class="date">登録日</th>
+          <!--<th class="date">登録日</th>-->
           <th class="deadline">消費期限</th>
           <th class="state">状態</th>
           <th class="button">-</th>
@@ -68,9 +68,9 @@
           v-for="item in computedTodos"
           v-bind:key="item.id"
           v-bind:class="{done:item.state}">
-          <th>{{ item.id }}</th>
+          <!--<th>{{ item.id }}</th>-->
           <td>{{ item.comment }}</td>
-          <td>{{ item.date }} </td>
+          <!--<td>{{ item.date }} </td>-->
           <td>{{ item.deadline }} </td>
           <!-- <script type="application/javascript">doPrint(item)</script> -->
 
