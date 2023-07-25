@@ -57,6 +57,7 @@ var DeadlineDemo = {
   getDate: function(date){
     var d = new Date();
     var formatted = `
+    ${d.getFullYear()}/
     ${d.getMonth()+1}/${d.getDate()} 
     ${d.getHours()}:${d.getMinutes()+date}
     `.replace(/\n|\r/g, '');
