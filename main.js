@@ -270,10 +270,11 @@ let vm = new Vue({
     doTimer: function (item) {
       const intervalTime = setInterval(() =>{   
         if(comTime(item.deadline)){
-            if(item.state == 1)  
+            if(item.state == 0)
+            {  
               this.doChangeState(item);
               alert(item.date + 'に追加した' + item.comment + 'が腐りました');
-            this.doChangeState(item); //　腐敗状態に切り替え
+            }
             clearInterval(intervalTime);
         }
       },1000);
