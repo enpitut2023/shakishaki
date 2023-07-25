@@ -1,20 +1,34 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>完璧で究極のシャキシャキ</title>
-  <link rel="stylesheet" href="./main.css">
-  <link href="https://fonts.googleapis.com/earlyaccess/hannari.css" rel="stylesheet">
-</head>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>完璧で究極のシャキシャキ</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+    <link rel="stylesheet" href="./main.css">
+    <link href="https://fonts.googleapis.com/earlyaccess/hannari.css" rel="stylesheet">
+  </head>  
 <body>
 
   <div id="app">
     <h1 class="title">ベジ食べる</h1>
+    <a class="pagetop" href="#button"><div class="pagetop__arrow"></div></a>
+    <a class="listtop" href="#list"><div class="listtop__arrow"></div></a>
+      
+    <a name="button"></a>
+    <br>
+    <h2>
+      新しい品目の追加
+      <div class="tooltip">
+        <i class="fas fa-question-circle tooltip-icon fa-lg fa-spin"></i>
+        <span class="tooltiptext">買った食材のボタンを追加していきましょう<span class="arrow"></span></span>
+      </div>
+    </h2>
 
-    <h2>新しい品目の追加</h2>
-  
-    <form v-on:submit.prevent="addButton">
+    
+    
+    
+    <form v-on:submit.prevent="addButton" id="list_top">
       食材名 <input type="text" ref="buttonName">
       消費期限日数 <select ref="buttonDate" >
         <option value="1">1</option>
@@ -29,8 +43,9 @@
       </select>
       <button type="submit" class="btn btn--blue">ボタン追加</button>
     </form>
+    
     <div class="square_contents">
-    <div v-for="button in buttons"><button type="button" v-on:click="addItem(button.name, button.date)" class="addbutton" >{{ button.name }}</button></div>
+    <div v-for="button in buttons"><button type="submit" v-on:click="addItem(button.name, button.date)" class="addbutton" >{{ button.name }}</button></div>
     <div><button class="b" type="submit" v-on:click="addItem('キャベツ', 14)">キャベツ</button></div>
     <div><button class="b" type="submit" v-on:click="addItem('ピーマン',2)">ピーマン</button></div>
     <div><button class="b" type="submit" v-on:click="addItem('もやし', 3)">もやし</button></div>
@@ -42,6 +57,9 @@
     <div><button class="b" type="submit" v-on:click="addItemDemo('デモ', 1)">デモ用ボタン</button></div>
     </div>
     <br>
+    <a name="list"></a>
+    <br>
+
     <!-- ★STEP11 -->
     <label v-for="label in options" >
       <input type="radio"
@@ -51,6 +69,10 @@
       
     <!-- ★STEP12 -->
     （{{ computedTodos.length }} 件を表示）
+    <div class="tooltip">
+      <i class="fas fa-question-circle tooltip-icon fa-lg fa-spin"></i>
+      <span class="tooltiptext">買った食材の消費期限を確認しましょう<span class="arrow"></span></span>
+    </div>
 
     <!-- ★STEP4 リスト用テーブル -->
     <table>
@@ -62,6 +84,8 @@
           <th class="deadline">消費期限</th>
           <th class="state">状態</th>
           <th class="button">-</th>
+          <th class="tooltip">
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -78,7 +102,7 @@
 
           <td class="state">
             <!-- ★STEP10 状態変更ボタン -->
-            <button id="box" v-on:click="doChangeState(item)">
+            <button id="box">
               {{ labels[item.state] }}
             </button>
           </td>

@@ -142,3 +142,93 @@ tbody tr.done #box{
   position: relative;
   margin: 0;
 }
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+  text-align: left;
+  color: crimson;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #ff80b0;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; 
+  left: 50%; 
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 15px;  /* 文字サイズを10pxに設定 */
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* トップへ戻るボタン */
+html {
+  scroll-behavior: smooth;
+}
+.pagetop {
+  height: 50px;
+  width: 50px;
+  position: fixed;
+  right: 30px;
+  bottom: 90px;
+  background: #fff;
+  border: solid 2px #000;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  box-shadow: 0 4px 6px rgb(0 0 0 / 30%);
+}
+.pagetop__arrow {
+  height: 10px;
+  width: 10px;
+  border-top: 3px solid #000;
+  border-right: 3px solid #000;
+  transform: translateY(20%) rotate(-45deg);
+}
+@media (hover: hover) and (pointer: fine) {
+  .pagetop:hover, .pagetop:hover .pagetop__arrow {
+      border-color: #3293e7;
+  }
+}
+.listtop {
+  height: 50px;
+  width: 50px;
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  background: #fff;
+  border: solid 2px #000;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  box-shadow: 0 4px 6px rgb(0 0 0 / 30%);
+}
+.listtop__arrow {
+  height: 10px;
+  width: 10px;
+  border-top: 3px solid #000;
+  border-right: 3px solid #000;
+  transform: translateY(20%) rotate(135deg);
+}
+@media (hover: hover) and (pointer: fine) {
+  .listtop:hover, .listtop:hover .listtop__arrow {
+      border-color: #3293e7;
+  }
+}

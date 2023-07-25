@@ -2,6 +2,7 @@
 // ★STEP2
 // https://jp.vuejs.org/v2/examples/todomvc.html
 var STORAGE_KEY = 'todos-vuejs-demo'
+var STORAGE_KEY_BUTTONS = 'buttons-vuejs-demo'
 var todoStorage = {
   fetch: function () {
     var todos = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
@@ -11,10 +12,21 @@ var todoStorage = {
     todoStorage.uid = todos.length
     return todos
   },
-  save: function (todos) {
+  save: function (todos, buttons) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(todos))
+    localStorage.setItem(STORAGE_KEY_BUTTONS, JSON.stringify(buttons))
+  },
+
+  fetchButtons: function () {
+    var buttons = JSON.parse(localStorage.getItem(STORAGE_KEY_BUTTONS) || '[]')
+    return buttons
+  },
+  save: function (todos, buttons) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(todos))
+    localStorage.setItem(STORAGE_KEY_BUTTONS, JSON.stringify(buttons))
   }
 }
+
 var registerDate = {
   getDate: function(){
     var d = new Date();
@@ -33,6 +45,14 @@ var registerDate = {
 var Deadline = {
   getDate: function(date){
     var d = new Date();
+
+    var formatted = `
+      ${d.getFullYear()}/
+      ${d.getMonth()+1}/${d.getDate()} 
+      ${d.getHours()}:${d.getMinutes()+1}
+
+      `.replace(/\n|\r/g, '');
+
     var lastd = new Date(d.getFullYear(), d.getMonth(), 0);
     if ((d.getDate()+date) > lastd.getDate()){
       var formatted = `
@@ -55,12 +75,11 @@ var Deadline = {
 //デモ用Deadline関数
 var DeadlineDemo = {
   getDate: function(date){
-    var d = new Date();
-    var formatted = `
-    ${d.getFullYear()}/
-    ${d.getMonth()+1}/${d.getDate()} 
-    ${d.getHours()}:${d.getMinutes()+date}
-    `.replace(/\n|\r/g, '');
+    var d = new Date();    
+      var formatted = `
+      ${d.getMonth()+1}/${d.getDate()} 
+      ${d.getHours()}:${d.getMinutes()+date}
+      `.replace(/\n|\r/g, '');
     return formatted
   }
 }
@@ -125,26 +144,58 @@ let vm = new Vue({
     }
   },
 
-  // ★STEP8
-  watch: {
-    // オプションを使う場合はオブジェクト形式にする
-    todos: {
-      // 引数はウォッチしているプロパティの変更後の値
-      handler: function (todos) {
-        todoStorage.save(todos)
+ // ★STEP8
+ watch: {
+  // オプションを使う場合はオブジェクト形式にする
+  todos: {
+    // 引数はウォッチしているプロパティの変更後の値
+      handler: function () {
+        todoStorage.save(this.todos, this.buttons)
       },
-      // deep オプションでネストしているデータも監視できる
+    // deep オプションでネストしているデータも監視できる
+
+      deep: true
+    },
+    buttons: {
+      handler: function () {
+        todoStorage.save(this.todos, this.buttons)
+      },
       deep: true
     }
   },
+  
 
   // ★STEP9
   created() {
     // インスタンス作成時に自動的に fetch() する
     this.todos = todoStorage.fetch()
+    this.buttons = todoStorage.fetchButtons()
   },
 
   methods: {
+    // ★STEP7 ToDo 追加の処理
+    doAdd: function(event, value) {
+      // ref で名前を付けておいた要素を参照
+      //コメントの内容
+      var comment = this.$refs.comment
+      // 入力がなければ何もしないで return
+      if (!comment.value.length) {
+        return
+      }
+      // { 新しいID, コメント, 作業状態 }
+      // というオブジェクトを現在の todos リストへ push
+      // 作業状態「state」はデフォルト「新鮮=0」で作成
+      this.todos.push({
+        id: todoStorage.uid++,
+        comment: comment.value,
+        date: registerDate.getDate(),
+        //ここで任意の消費期限の設定
+        deadline: Deadline.getDate(i),
+        state: 0
+      })
+      // フォーム要素を空にする
+      comment.value = ''
+    },
     addItem: function(itemname, i) {
       // { 新しいID, コメント, 作業状態 }
       // というオブジェクトを現在の todos リストへ push
@@ -164,7 +215,7 @@ let vm = new Vue({
       */
       autoChange();
     },
-    
+
     //デモ用addItem関数
     addItemDemo: function(itemname, i) {
       this.todos.push({
@@ -198,6 +249,8 @@ let vm = new Vue({
       buttonDate.value = ''
     },
 
+    // ボタン削除
+
     // ★STEP10 状態変更の処理
     doChangeState: function (item) {
       if (item.state==0){
@@ -211,19 +264,21 @@ let vm = new Vue({
       this.todos.splice(index, 1)
     },
 
-    // 消費期限になったら通知
+    // 消費期限になったら通知   
     doTimer: function (item) {
-        const intervalTime = setInterval(() =>{   
-          if(comTime(item.deadline)){
+      const intervalTime = setInterval(() =>{   
+        if(comTime(item.deadline)){
+            this.doChangeState(item);
             if(item.state == 0)  
               alert(item.date + 'に追加した' + item.comment + 'が腐りました');
             this.doChangeState(item); //　腐敗状態に切り替え
             clearInterval(intervalTime);
-          }
-        },1000);
-    },
-    // doPrint: function(item) {
-    //   console.log(item.deadline);
-    //   this.doTimer(item);
-    // }
-    }    })
+        }
+      },1000);
+  },
+  // doPrint: function(item) {
+  //   console.log(item.deadline);
+  //   this.doTimer(item);
+  // }
+  }    })
+  
