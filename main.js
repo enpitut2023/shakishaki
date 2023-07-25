@@ -33,29 +33,33 @@ var registerDate = {
 var Deadline = {
   getDate: function(date){
     var d = new Date();
-
-    var formatted = `
-      ${d.getFullYear()}/
-      ${d.getMonth()+1}/${d.getDate()} 
-      ${d.getHours()}:${d.getMinutes()+1}
-
-      `.replace(/\n|\r/g, '');
-/*
     var lastd = new Date(d.getFullYear(), d.getMonth(), 0);
     if ((d.getDate()+date) > lastd.getDate()){
       var formatted = `
-      ${d.getMonth()+2}/${(d.getDate()+date) - lastd.getDate()} 
+      ${d.getFullYear()}/${d.getMonth()+2}/${(d.getDate()+date) - lastd.getDate()} 
       ${d.getHours()}:${d.getMinutes()}
-    `.replace(/\n|\r/g, '');
-    } else {
-    
-      var formatted = `
-      ${d.getMonth()+1}/${d.getDate()} 
-      ${d.getHours()}:${d.getMinutes()+date}
 
 
       `.replace(/\n|\r/g, '');
-    } */
+    } else {
+      var formatted = `
+      ${d.getFullYear()}/${d.getMonth()+1}/${d.getDate()+date} 
+      ${d.getHours()}:${d.getMinutes()}
+
+
+      `.replace(/\n|\r/g, '');
+    }
+    return formatted
+  }
+} 
+//デモ用Deadline関数
+var DeadlineDemo = {
+  getDate: function(date){
+    var d = new Date();
+    var formatted = `
+    ${d.getMonth()+1}/${d.getDate()} 
+    ${d.getHours()}:${d.getMinutes()+date}
+    `.replace(/\n|\r/g, '');
     return formatted
   }
 }
@@ -160,7 +164,22 @@ let vm = new Vue({
       autoChange();
     },
     
+    //デモ用addItem関数
+    addItemDemo: function(itemname, i) {
+      this.todos.push({
+        id: todoStorage.uid++,
+        comment: itemname,
+        date: registerDate.getDate(),
+        //ここで任意の消費期限の設定
+        deadline: DeadlineDemo.getDate(i),
+        state: 0
+      })
+      autoChange();
+    },
+
+    
     //　食材ボタンの追加
+
     addButton: function() {
       var buttonName = this.$refs.buttonName
       var buttonDate = this.$refs.buttonDate

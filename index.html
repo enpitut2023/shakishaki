@@ -12,7 +12,30 @@
   <div id="app">
     <h1 class="title">ベジ食べる</h1>
 
-
+    <h2>新しい品目の追加</h2>
+  
+    <form v-on:submit.prevent="addButton">
+      食材名 <input type="text" ref="buttonName">
+      消費期限日数 <select ref="buttonDate" >
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+      </select>
+      <button type="submit" class="btn btn--blue">ボタン追加</button>
+    </form>
+    <button type="button" v-for="button in buttons" v-on:click="addItem(button.name, button.date)" class="addbutton" class="addbutton">{{ button.name }}</button>
+      <button type="submit" v-on:click="addItem('キャベツ', 3)">キャベツ</button>
+      <button type="submit" v-on:click="addItem('ピーマン',2)">ピーマン</button>
+      <button type="submit" v-on:click="addItem('もやし', 3)">もやし</button>
+      <button type="submit" v-on:click="addItem('鶏肉', 2)">鶏肉</button>
+      <button type="submit" v-on:click="addItemDemo('デモ', 1)">デモ用ボタン</button>
+    <br>
     <!-- ★STEP11 -->
     <label v-for="label in options" >
       <input type="radio"
@@ -62,31 +85,6 @@
         </tr>
       </tbody>
     </table>
-
-    <!-- ★STEP6 -->
-    <h2>新しい品目の追加</h2>
-
-    <form v-on:submit.prevent="addButton">
-      食材名 <input type="text" ref="buttonName">
-      消費期限日数 <select ref="buttonDate" >
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-      </select>
-      <button type="submit" class="btn btn--blue">ボタン追加</button>
-    </form>
-    <button type="button" v-for="button in buttons" v-on:click="addItem(button.name, button.date)" class="addbutton" class="addbutton">{{ button.name }}</button>
-      <button type="submit" v-on:click="addItem('キャベツ', 3)">キャベツ</button>
-      <button type="submit" v-on:click="addItem('ピーマン',2)">ピーマン</button>
-      <button type="submit" v-on:click="addItem('もやし', 3)">もやし</button>
-      <button type="submit" v-on:click="addItem('鶏肉', 2)">鶏肉</button>
-  
   </div>
 
   <script src="https://unpkg.com/vue@2"></script>
