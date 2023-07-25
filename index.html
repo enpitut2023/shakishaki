@@ -19,7 +19,7 @@
       
     <a name="button"></a>
     <br>
-    <h2>
+    <h2 class="text">
       新しい品目の追加
       <div class="tooltip">
         <i class="fas fa-question-circle tooltip-icon fa-lg fa-spin"></i>
@@ -30,7 +30,7 @@
     
     
     
-    <form v-on:submit.prevent="addButton" id="list_top">
+    <form class="text" v-on:submit.prevent="addButton" id="list_top">
       食材名 <input type="text" ref="buttonName">
       消費期限日数 <select ref="buttonDate" >
         <option value="1">1</option>
@@ -63,7 +63,7 @@
     <br>
 
     <!-- ★STEP11 -->
-    <label v-for="label in options" >
+    <label class="text" v-for="label in options" >
       <input type="radio"
         v-model="current"
         v-bind:value="label.value">{{ label.label }}
