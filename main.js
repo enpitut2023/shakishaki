@@ -17,6 +17,7 @@ var todoStorage = {
     localStorage.setItem(STORAGE_KEY_BUTTONS, JSON.stringify(buttons))
   },
 
+  /*
   fetchButtons: function () {
     var buttons = JSON.parse(localStorage.getItem(STORAGE_KEY_BUTTONS) || '[]')
     return buttons
@@ -25,6 +26,7 @@ var todoStorage = {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(todos))
     localStorage.setItem(STORAGE_KEY_BUTTONS, JSON.stringify(buttons))
   }
+  */
 }
 
 var registerDate = {
