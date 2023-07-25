@@ -29,16 +29,18 @@
       </select>
       <button type="submit" class="btn btn--blue">ボタン追加</button>
     </form>
-    <button type="button" v-for="button in buttons" v-on:click="addItem(button.name, button.date)" class="addbutton" class="addbutton">{{ button.name }}</button>
-    <button type="submit" v-on:click="addItem('キャベツ', 14)">キャベツ</button>
-    <button type="submit" v-on:click="addItem('ピーマン',2)">ピーマン</button>
-    <button type="submit" v-on:click="addItem('もやし', 3)">もやし</button>
-    <button type="submit" v-on:click="addItem('鶏肉', 2)">鶏肉</button>
-    <button type="submit" v-on:click="addItem('きゅうり',4)">きゅうり</button>
-    <button type="submit" v-on:click="addItem('大根', 7)">大根</button>
-    <button type="submit" v-on:click="addItem('トマト', 7)">トマト</button>
-    <button type="submit" v-on:click="addItem('ブロッコリー', 3)">ブロッコリー</button>
-    <button type="submit" v-on:click="addItemDemo('デモ', 1)">デモ用ボタン</button>
+    <div class="square_contents">
+    <div v-for="button in buttons"><button type="button" v-on:click="addItem(button.name, button.date)" class="addbutton" >{{ button.name }}</button></div>
+    <div><button class="b" type="submit" v-on:click="addItem('キャベツ', 14)">キャベツ</button></div>
+    <div><button class="b" type="submit" v-on:click="addItem('ピーマン',2)">ピーマン</button></div>
+    <div><button class="b" type="submit" v-on:click="addItem('もやし', 3)">もやし</button></div>
+    <div><button class="b" type="submit" v-on:click="addItem('鶏肉', 2)">鶏肉</button></div>
+    <div><button class="b" type="submit" v-on:click="addItem('きゅうり',4)">きゅうり</button></div>
+    <div><button class="b" type="submit" v-on:click="addItem('大根', 7)">大根</button></div>
+    <div><button class="b" type="submit" v-on:click="addItem('トマト', 7)">トマト</button></div>
+    <div><button class="b" type="submit" v-on:click="addItem('ブロッコリー', 3)">ブロッコリー</button></div>
+    <div><button class="b" type="submit" v-on:click="addItemDemo('デモ', 1)">デモ用ボタン</button></div>
+    </div>
     <br>
     <!-- ★STEP11 -->
     <label v-for="label in options" >
